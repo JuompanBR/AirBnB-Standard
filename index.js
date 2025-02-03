@@ -76,5 +76,75 @@ const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Se
 function sayHi(name) {
     return `How are you ${name} ?`;
 };
+/**************** 
+ * Variables
+ ****************/
+// declare variables where you need them 
+// bad 
+function findAgeGroup(name) {
+
+    let age = 20; // age is not directly used here
+
+    if (name.trim() == '') {
+
+        return 'An error occurred';
+    }
+
+    if (age < 20) {
+
+        return 'Teenager';
+    } else if ((age > 19) && (age < 40)) {
+
+        return "Youth";
+    };
+}
+//good 
+function findAgeGroup2(name) {
+
+    if (name.trim() == '') {
+
+        return 'An error occurred';
+    }
+
+    let age = 20; // perfect place to declare age
+
+    if (age < 20) {
+
+        return 'Teenager';
+    } else if ((age > 19) && (age < 40)) {
+
+        return "Youth";
+    };
+}
 // never use eval() for strings, it opens too many vulnerabilities
 // do not unnecessarily  escape characters
+
+// do not store reference to this
+// use arrow functions
+//bad
+function bad() {
+
+    const parent = this;
+    return function() {
+
+        console.log(parent);
+    }
+}
+
+// good
+function good() {
+
+    return () => {
+
+        console.log(this);
+    };
+}
+
+// use JQuery variables with $ prefix
+// bad
+const body = $('body');
+
+// good
+const $body = $('body');
+
+// cache jQuery lookups
